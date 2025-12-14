@@ -1,0 +1,3885 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Телесная терапия — Профессиональный практикум</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030303;
+      --gold-50: #fefdf8;
+      --gold-100: #fdf8e3;
+      --gold-200: #f9eec3;
+      --gold-300: #f3e09a;
+      --gold-400: #e9cb67;
+      --gold-500: #d4af37;
+      --gold-600: #b8942d;
+      --gold-700: #967524;
+      --gold-800: #7a5f1f;
+      --gold-900: #654e1c;
+      --text: #f8f8f8;
+      --muted: rgba(255,255,255,0.68);
+      --stroke: rgba(255,255,255,0.07);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes goldShimmer {
+      0% {
+        background-position: -200% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    .gold-shimmer {
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-300) 25%,
+        var(--gold-100) 50%,
+        var(--gold-300) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 3s ease-in-out infinite;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       Hero Section — Architectural Asymmetry
+    ═══════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      background: 
+        radial-gradient(ellipse 1200px 800px at 15% 25%, rgba(212, 175, 55, 0.08), transparent 55%),
+        radial-gradient(ellipse 800px 600px at 85% 75%, rgba(243, 224, 154, 0.04), transparent 50%),
+        linear-gradient(135deg, #040404 0%, #0a0a0a 100%);
+    }
+
+    /* Professional grid */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 120% 120% at 50% 50%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 120% 120% at 50% 50%, black 30%, transparent 80%);
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    /* Spotlight animation */
+    .hero-spotlight {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .spotlight-beam {
+      position: absolute;
+      width: 800px;
+      height: 1200px;
+      background: conic-gradient(
+        from 180deg at 50% 0%,
+        transparent 0deg,
+        rgba(212, 175, 55, 0.15) 12deg,
+        rgba(243, 224, 154, 0.35) 25deg,
+        rgba(212, 175, 55, 0.15) 38deg,
+        transparent 50deg
+      );
+      top: -30%;
+      left: 15%;
+      transform-origin: top center;
+      animation: spotlight-sweep 10s ease-in-out infinite;
+      filter: blur(30px);
+    }
+
+    .spotlight-beam-2 {
+      position: absolute;
+      width: 700px;
+      height: 1000px;
+      background: conic-gradient(
+        from 180deg at 50% 0%,
+        transparent 0deg,
+        rgba(255, 255, 255, 0.08) 8deg,
+        rgba(212, 175, 55, 0.25) 20deg,
+        rgba(255, 255, 255, 0.08) 32deg,
+        transparent 40deg
+      );
+      top: -25%;
+      right: 25%;
+      transform-origin: top center;
+      animation: spotlight-sweep-2 13s ease-in-out infinite;
+      animation-delay: -4s;
+      filter: blur(35px);
+    }
+
+    .spotlight-beam-3 {
+      position: absolute;
+      width: 500px;
+      height: 800px;
+      background: conic-gradient(
+        from 180deg at 50% 0%,
+        transparent 0deg,
+        rgba(212, 175, 55, 0.12) 10deg,
+        rgba(255, 245, 200, 0.2) 18deg,
+        rgba(212, 175, 55, 0.12) 26deg,
+        transparent 36deg
+      );
+      top: -20%;
+      left: 55%;
+      transform-origin: top center;
+      animation: spotlight-sweep-3 8s ease-in-out infinite;
+      animation-delay: -2s;
+      filter: blur(25px);
+    }
+
+    @keyframes spotlight-sweep {
+      0%, 100% {
+        transform: rotate(-30deg);
+        opacity: 0.8;
+      }
+      50% {
+        transform: rotate(30deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes spotlight-sweep-2 {
+      0%, 100% {
+        transform: rotate(25deg);
+        opacity: 0.6;
+      }
+      50% {
+        transform: rotate(-25deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes spotlight-sweep-3 {
+      0%, 100% {
+        transform: rotate(-15deg);
+        opacity: 0.5;
+      }
+      50% {
+        transform: rotate(20deg);
+        opacity: 0.9;
+      }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: 30%;
+      width: 1px;
+      height: 140%;
+      background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+      transform: rotate(15deg);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      right: 45%;
+      width: 1px;
+      height: 80%;
+      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: rotate(15deg);
+    }
+
+    /* Затемнение в конце hero для плавного перехода */
+    .hero-bottom-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 350px;
+      background: linear-gradient(180deg, 
+        transparent 0%,
+        rgba(3, 3, 3, 0.15) 15%,
+        rgba(3, 3, 3, 0.35) 30%,
+        rgba(3, 3, 3, 0.6) 45%,
+        rgba(3, 3, 3, 0.8) 60%,
+        rgba(3, 3, 3, 0.92) 75%,
+        rgba(3, 3, 3, 0.98) 90%,
+        #030303 100%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(48px, 8vw, 120px);
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-300);
+      margin-bottom: 32px;
+      width: fit-content;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-500);
+      box-shadow: 0 0 12px var(--gold-500);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Mobile photo wrapper */
+    .hero-photo-mobile-wrap {
+      display: none;
+      position: relative;
+      width: 100%;
+      max-width: 280px;
+      margin: 24px auto 28px;
+    }
+
+    /* Mobile photo (hidden on desktop) */
+    .hero-photo-mobile {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      box-shadow: 0 0 60px rgba(212, 175, 55, 0.08);
+    }
+
+    .hero-photo-mobile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 55% center;
+      filter: saturate(1.1) contrast(1.05) brightness(1.0);
+    }
+
+    .hero-photo-mobile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 85% 65% at 58% 22%, rgba(212, 175, 55, 0.08), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 100%);
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.8); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 5.5vw, 5.8rem);
+      line-height: 1.04;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      margin: 0 0 28px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      position: relative;
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-300) 25%,
+        var(--gold-100) 50%,
+        var(--gold-300) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 3s ease-in-out infinite;
+    }
+
+    .hero-headline em::after {
+      content: '';
+      position: absolute;
+      bottom: 0.1em;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-500), transparent);
+      opacity: 0.4;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .btn {
+      font-family: var(--sans);
+      cursor: pointer;
+      border: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: all 320ms var(--ease-elastic);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-gold {
+      padding: 18px 38px;
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+      color: #0a0a0a;
+      border-radius: 12px;
+      box-shadow: 
+        0 4px 20px rgba(212, 175, 55, 0.25),
+        0 12px 40px rgba(212, 175, 55, 0.15);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 8px 28px rgba(212, 175, 55, 0.35),
+        0 20px 60px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-line {
+      padding: 18px 32px;
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+    }
+
+    .btn-line:hover {
+      border-color: var(--gold-500);
+      color: var(--gold-300);
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: 36px;
+      padding-top: 32px;
+      border-top: 1px solid var(--stroke);
+    }
+
+    .hero-metric {
+      display: grid;
+      gap: 4px;
+    }
+
+    .hero-metric-value {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: var(--gold-400);
+      line-height: 1;
+    }
+
+    .hero-metric-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 3/4;
+    }
+
+    .hero-frame {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 24px;
+      overflow: hidden;
+      background: 
+        linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.2));
+      backdrop-filter: blur(20px);
+      animation: frame-glow 8s ease-in-out infinite;
+    }
+
+    @keyframes frame-glow {
+      0%, 100% { 
+        box-shadow: 0 0 60px rgba(212, 175, 55, 0.08);
+        border-color: rgba(212, 175, 55, 0.18);
+      }
+      50% { 
+        box-shadow: 0 0 100px rgba(212, 175, 55, 0.15);
+        border-color: rgba(212, 175, 55, 0.3);
+      }
+    }
+
+    .hero-frame::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(212, 175, 55, 0.08), transparent 30%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-frame-inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 32px;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 55% center;
+      display: block;
+      filter: saturate(1.1) contrast(1.05) brightness(1.0);
+    }
+
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 85% 65% at 58% 22%, rgba(212, 175, 55, 0.08), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-photo-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-size: 4.5rem;
+      font-weight: 400;
+      color: var(--gold-400);
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+      opacity: 1;
+      transition: opacity 280ms ease;
+      pointer-events: none;
+    }
+
+    .hero-frame.photo-loaded .hero-photo-fallback {
+      opacity: 0;
+    }
+
+    .hero-frame-text {
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-float-card {
+      position: absolute;
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-float-card.top-right {
+      top: 10%;
+      right: -5%;
+      animation-delay: -2s;
+    }
+
+    .hero-float-card.bottom-left {
+      bottom: 15%;
+      left: -10%;
+      animation-delay: -4s;
+    }
+
+    .hero-float-card strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--gold-300);
+      margin-bottom: 4px;
+    }
+
+    .hero-float-card span {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-left {
+        padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 48px);
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .hero-photo-mobile-wrap {
+        display: block;
+      }
+
+      .hero-float-card {
+        position: absolute;
+        z-index: 10;
+        padding: 12px 16px;
+        font-size: 0.88rem;
+      }
+
+      .hero-float-card strong {
+        font-size: 1.05rem;
+      }
+
+      .hero-float-card span {
+        font-size: 0.76rem;
+      }
+
+      .hero-float-card.top-right {
+        top: -10px;
+        right: -10px;
+        animation-delay: -2s;
+      }
+
+      .hero-float-card.bottom-left {
+        bottom: -10px;
+        left: -10px;
+        animation-delay: -4s;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-rows: auto auto;
+      }
+
+      .hero-left {
+        padding: 32px 20px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .hero-badge {
+        font-size: 0.68rem;
+        padding: 8px 14px;
+        margin-bottom: 24px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-headline {
+        font-size: clamp(3.2rem, 12vw, 4.5rem);
+        margin-bottom: 20px;
+        line-height: 1.1;
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+        margin-bottom: 32px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 36px;
+        width: 100%;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-gold,
+      .btn-line {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+      }
+
+      .hero-metrics {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px 28px;
+        padding-top: 24px;
+        justify-content: center;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-metric-value {
+        font-size: 2rem;
+      }
+
+      .hero-metric-label {
+        font-size: 0.8rem;
+      }
+
+      .hero-right {
+        padding: 24px 20px 40px;
+        min-height: 320px;
+      }
+
+      .hero-visual {
+        max-width: 100%;
+        aspect-ratio: 4/5;
+      }
+
+      .hero-frame-text {
+        font-size: 0.72rem;
+        letter-spacing: 0.24em;
+      }
+
+      .hero-photo {
+        object-position: 42% 25%;
+      }
+
+      /* Hide grid and spotlight on mobile for performance */
+      .hero-grid {
+        opacity: 0.5;
+      }
+
+      .hero-spotlight {
+        opacity: 0.6;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-left {
+        padding: 24px 16px;
+      }
+
+      .hero-headline {
+        font-size: clamp(2.8rem, 11vw, 3.8rem);
+      }
+
+      .hero-sub {
+        font-size: 0.95rem;
+      }
+
+      .hero-metrics {
+        gap: 20px;
+      }
+
+      .hero-metric {
+        flex: 1 1 calc(50% - 10px);
+      }
+
+      .hero-right {
+        padding: 20px 16px 32px;
+        min-height: 280px;
+      }
+
+      .btn-gold,
+      .btn-line {
+        padding: 16px 28px;
+        font-size: 0.88rem;
+      }
+
+      .hero-float-card {
+        padding: 10px 14px;
+        font-size: 0.84rem;
+      }
+
+      .hero-float-card strong {
+        font-size: 0.98rem;
+      }
+
+      .hero-float-card span {
+        font-size: 0.72rem;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    /* ═══════════════════════════════════════════════════════
+       ВАРИАНТ 2 — Центрированный драматичный
+    ═══════════════════════════════════════════════════════ */
+    .honest-block-v2 {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /*
+        Плавный переход от hero:
+        - небольшой overlap вверх
+        - верхний градиентный fade, чтобы граница не была «рубленой»
+      */
+      margin-top: -90px;
+      padding: calc(clamp(60px, 10vw, 120px) + 90px) clamp(24px, 6vw, 100px) clamp(30px, 5vw, 50px);
+      overflow: hidden;
+      background: 
+        radial-gradient(ellipse 900px 700px at 50% 60%, rgba(212, 175, 55, 0.1), transparent 60%),
+        radial-gradient(ellipse 600px 400px at 80% 85%, rgba(243, 224, 154, 0.05), transparent 50%),
+        radial-gradient(ellipse 600px 400px at 20% 85%, rgba(212, 175, 55, 0.03), transparent 50%),
+        linear-gradient(180deg, #040404 0%, #080808 50%, #040404 100%);
+      z-index: 2;
+    }
+
+    .honest-block-v2::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: linear-gradient(180deg, 
+        #030303 0%, 
+        rgba(3, 3, 3, 0.95) 15%,
+        rgba(3, 3, 3, 0.7) 40%,
+        rgba(3, 3, 3, 0.3) 70%,
+        rgba(3, 3, 3, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Затемнение внизу второго блока */
+    .v2-bottom-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 300px;
+      background: linear-gradient(180deg, 
+        transparent 0%,
+        rgba(3, 3, 3, 0.15) 15%,
+        rgba(3, 3, 3, 0.35) 30%,
+        rgba(3, 3, 3, 0.6) 45%,
+        rgba(3, 3, 3, 0.8) 60%,
+        rgba(3, 3, 3, 0.92) 75%,
+        rgba(3, 3, 3, 0.98) 90%,
+        #030303 100%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .honest-block-v2::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 10%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 10%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Spotlight effect */
+    .v2-spotlight {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .v2-spotlight::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 900px;
+      background: conic-gradient(
+        from 180deg at 50% 0%,
+        transparent 0deg,
+        rgba(212, 175, 55, 0.12) 15deg,
+        rgba(243, 224, 154, 0.25) 25deg,
+        rgba(212, 175, 55, 0.12) 35deg,
+        transparent 50deg
+      );
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: blur(40px);
+      animation: v2-spotlight 12s ease-in-out infinite;
+    }
+
+    @keyframes v2-spotlight {
+      0%, 100% { opacity: 0.6; transform: translateX(-50%) rotate(-5deg); }
+      50% { opacity: 1; transform: translateX(-50%) rotate(5deg); }
+    }
+
+    .v2-content {
+      position: relative;
+      z-index: 5;
+      max-width: 900px;
+      text-align: center;
+      margin-top: -140px;
+    }
+
+    .v2-headline {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      margin: 0 0 20px;
+      color: var(--text);
+    }
+
+    .v2-headline-accent {
+      display: block;
+      font-style: italic;
+      font-size: 1.1em;
+      margin-top: 0;
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-300) 25%,
+        var(--gold-100) 50%,
+        var(--gold-300) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 3s ease-in-out infinite;
+    }
+
+    .v2-divider {
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
+      margin: 48px auto;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+    }
+
+    .v2-quote-wrapper {
+      position: relative;
+      max-width: 780px;
+      margin: 0 auto 48px;
+    }
+
+    .v2-quote-mark {
+      position: absolute;
+      font-family: var(--serif);
+      font-size: 9rem;
+      color: var(--gold-500);
+      opacity: 0.1;
+      line-height: 1;
+    }
+
+    .v2-quote-mark.left {
+      top: -40px;
+      left: -30px;
+    }
+
+    .v2-quote-mark.right {
+      bottom: -70px;
+      right: -30px;
+      transform: rotate(180deg);
+    }
+
+    .v2-quote-text {
+      font-family: var(--sans);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 400;
+    }
+
+    .v2-quote-text p {
+      margin: 0 0 24px;
+    }
+
+    .v2-emphasis {
+      display: grid;
+      gap: 14px;
+      margin: 36px 0;
+    }
+
+    .v2-mini-quote {
+      margin: 0;
+      text-align: left;
+      padding: 24px 28px 24px 48px;
+      border-radius: 20px;
+      background: 
+        linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.04) 100%),
+        rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: var(--gold-100);
+      font-weight: 500;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      position: relative;
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 4px 20px rgba(212, 175, 55, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .v2-mini-quote:hover {
+      transform: translateX(8px);
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 
+        0 16px 50px rgba(0, 0, 0, 0.5),
+        0 6px 24px rgba(212, 175, 55, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .v2-mini-quote::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold-400) 0%, var(--gold-600) 100%);
+      border-radius: 4px 0 0 4px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .v2-mini-quote::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .v2-mini-quote:hover::after {
+      opacity: 1;
+    }
+
+    .v2-conclusion {
+      margin-top: 40px;
+      padding: 32px 40px;
+      background: rgba(212, 175, 55, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 18px;
+      display: inline-block;
+      box-shadow: 0 4px 24px rgba(212, 175, 55, 0.08);
+    }
+
+    .v2-conclusion p {
+      margin: 0;
+      font-style: normal;
+      color: var(--text);
+      font-size: 1.08rem;
+      font-weight: 600;
+      line-height: 1.65;
+    }
+
+    .v2-conclusion p:first-child {
+      color: var(--text);
+      font-style: normal;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .v2-author {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .v2-author-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(212, 175, 55, 0.3);
+    }
+
+    .v2-author-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--gold-400);
+      font-style: italic;
+    }
+
+    /* Responsive V2 */
+    @media (max-width: 768px) {
+      .honest-block-v2 {
+        padding: 48px 20px;
+      }
+
+      .v2-quote-mark {
+        font-size: 5rem;
+      }
+
+      .v2-quote-mark.left {
+        top: -20px;
+        left: 0;
+      }
+
+      .v2-quote-mark.right {
+        bottom: -40px;
+        right: 0;
+      }
+
+      .v2-emphasis {
+        gap: 12px;
+      }
+
+      .v2-mini-quote {
+        padding: 16px 18px;
+      }
+
+      .v2-conclusion {
+        padding: 20px 24px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       БЛОК 3 — ВАРИАНТ 2: Карточки с мини-фото
+    ═══════════════════════════════════════════════════════ */
+    .for-you-v2 {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(40px, 6vw, 60px) clamp(24px, 6vw, 80px) clamp(60px, 10vw, 120px);
+      background: linear-gradient(180deg, #030303 0%, #070707 50%, #030303 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Затемнение сверху третьего блока */
+    .for-you-v2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(180deg, 
+        #030303 0%, 
+        rgba(3, 3, 3, 0.95) 15%,
+        rgba(3, 3, 3, 0.7) 40%,
+        rgba(3, 3, 3, 0.3) 70%,
+        rgba(3, 3, 3, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Затемнение снизу третьего блока */
+    .for-you-v2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 250px;
+      background: linear-gradient(0deg, 
+        #030303 0%, 
+        rgba(3, 3, 3, 0.95) 15%,
+        rgba(3, 3, 3, 0.7) 40%,
+        rgba(3, 3, 3, 0.3) 70%,
+        rgba(3, 3, 3, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .for-you-v2-container {
+      max-width: 1000px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .for-you-v2-title {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      text-align: center;
+      margin: 0 0 60px;
+      line-height: 1.2;
+    }
+
+    .for-you-v2-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .for-you-v2-card {
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .for-you-v2-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(212, 175, 55, 0.35);
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(212, 175, 55, 0.1);
+    }
+
+    .for-you-v2-card-photo {
+      aspect-ratio: 16/10;
+      background: 
+        linear-gradient(145deg, rgba(212, 175, 55, 0.1), rgba(0,0,0,0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .for-you-v2-card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .for-you-v2-card-content {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .for-you-v2-card-check {
+      display: none;
+    }
+
+    .for-you-v2-card-content p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* Responsive для всех 3 вариантов */
+    @media (max-width: 900px) {
+      
+
+      
+
+      .for-you-v2-cards {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      
+
+      
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       БЛОК 4 — Почему просто отдохнуть не помогает
+    ═══════════════════════════════════════════════════════ */
+    .why-v2 {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(30px, 5vw, 50px) clamp(24px, 6vw, 80px) clamp(60px, 10vw, 120px);
+      background: 
+        radial-gradient(ellipse 700px 500px at 50% 40%, rgba(212, 175, 55, 0.1), transparent 60%),
+        linear-gradient(180deg, #030303 0%, #070707 50%, #030303 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-v2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(180deg, 
+        #030303 0%, 
+        rgba(3, 3, 3, 0.95) 15%,
+        rgba(3, 3, 3, 0.7) 40%,
+        rgba(3, 3, 3, 0.3) 70%,
+        rgba(3, 3, 3, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .why-v2-container {
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .why-v2-title {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+
+    .why-v2-title em {
+      font-style: italic;
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-300) 25%,
+        var(--gold-100) 50%,
+        var(--gold-300) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 3s ease-in-out infinite;
+    }
+
+    .why-v2-answer {
+      font-size: 1.15rem;
+      color: var(--gold-300);
+      margin: 0 0 48px;
+      font-weight: 500;
+    }
+
+    .why-v2-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      text-align: left;
+    }
+
+    .why-v2-card {
+      background: 
+        linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%),
+        rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 18px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .why-v2-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 175, 55, 0.35);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .why-v2-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .why-v2-card-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #0a0a0a;
+    }
+
+    .why-v2-card p {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .why-v2-card.full-width {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: rgba(212, 175, 55, 0.06);
+    }
+
+    .why-v2-card.full-width .why-v2-card-icon {
+      margin: 0 auto 18px;
+    }
+
+    .why-v2-card.full-width p {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    @media (max-width: 900px) {
+      .why-v2-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      
+
+      
+
+      
+
+      
+
+      
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       HOW WE WORK — Immersive Cards
+    ═══════════════════════════════════════════════════════ */
+    .how-v1 {
+      min-height: 100vh;
+      padding: clamp(30px, 5vw, 50px) clamp(24px, 6vw, 80px) clamp(60px, 10vw, 120px);
+      background: 
+        linear-gradient(180deg, 
+          rgba(3, 3, 3, 0) 0%,
+          rgba(4, 4, 4, 0.3) 5%,
+          rgba(6, 6, 6, 0.7) 12%,
+          #080808 20%,
+          #080808 80%,
+          rgba(6, 6, 6, 0.7) 88%,
+          rgba(4, 4, 4, 0.3) 95%,
+          rgba(3, 3, 3, 0) 100%
+        );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .how-v1::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 15%, transparent 65%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 15%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .how-v1::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(180deg, 
+          #030303 0%,
+          rgba(3, 3, 3, 0.95) 3%,
+          rgba(3, 3, 3, 0.7) 8%,
+          rgba(3, 3, 3, 0.3) 15%,
+          transparent 25%,
+          transparent 75%,
+          rgba(3, 3, 3, 0.3) 85%,
+          rgba(3, 3, 3, 0.7) 92%,
+          rgba(3, 3, 3, 0.95) 97%,
+          #030303 100%
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .how-v1-header {
+      text-align: center;
+      margin-bottom: clamp(60px, 10vw, 100px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .how-v1-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-500);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .how-v1-title {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .how-v1-title em {
+      font-style: italic;
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-300) 25%,
+        var(--gold-100) 50%,
+        var(--gold-300) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 3s ease-in-out infinite;
+    }
+
+    .how-v1-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 3vw, 40px);
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .how-v1-card {
+      position: relative;
+      padding: clamp(40px, 5vw, 60px) clamp(28px, 4vw, 40px);
+      background: linear-gradient(165deg, 
+        rgba(20, 20, 20, 0.9) 0%, 
+        rgba(10, 10, 10, 0.95) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 32px;
+      overflow: hidden;
+      transition: all 0.6s var(--ease-out-expo);
+    }
+
+    .how-v1-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 100%, rgba(212, 175, 55, 0.08), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .how-v1-card:hover {
+      border-color: rgba(212, 175, 55, 0.25);
+      transform: translateY(-12px);
+    }
+
+    .how-v1-card:hover::before {
+      opacity: 1;
+    }
+
+    .how-v1-card-num {
+      font-family: var(--serif);
+      font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 400;
+      line-height: 0.8;
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.05) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      pointer-events: none;
+      transition: all 0.6s ease;
+    }
+
+    .how-v1-card:hover .how-v1-card-num {
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.4) 0%, rgba(212, 175, 55, 0.1) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .how-v1-card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .how-v1-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25);
+    }
+
+    .how-v1-card-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: #0a0a0a;
+    }
+
+    .how-v1-card-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      font-weight: 500;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+
+    .how-v1-card-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .how-v1-card-text em {
+      color: var(--gold-400);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    @media (max-width: 1000px) {
+      .how-v1-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .how-v1-card {
+        padding: 32px 24px;
+      }
+
+      .how-v1-card-num {
+        font-size: 5rem;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       AUTHOR BLOCK — Variant 2 (Centered with accent photo)
+    ═══════════════════════════════════════════════════════ */
+    .author-v2 {
+      min-height: 100vh;
+      padding: clamp(60px, 10vw, 120px) clamp(24px, 6vw, 80px);
+      background: 
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(212, 175, 55, 0.08), transparent 50%),
+        linear-gradient(180deg, #050505 0%, #080808 50%, #050505 100%);
+      position: relative;
+    }
+
+    .author-v2-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .author-v2-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-500);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .author-v2-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--text);
+      margin: 0 0 60px;
+      line-height: 1.2;
+    }
+
+    .author-v2-photo-wrapper {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 0 auto 50px;
+    }
+
+    .author-v2-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      border: 4px solid transparent;
+      background: 
+        linear-gradient(var(--bg), var(--bg)) padding-box,
+        linear-gradient(135deg, var(--gold-400), var(--gold-600), var(--gold-400)) border-box;
+      box-shadow: 
+        0 0 60px rgba(212, 175, 55, 0.3),
+        0 20px 60px -20px rgba(0, 0, 0, 0.5);
+    }
+
+    .author-v2-photo .author-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .author-v2-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .author-v2-photo-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      animation: pulseRing 3s ease-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    .author-v2-name {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 400;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+
+    .author-v2-role {
+      font-size: 1.1rem;
+      color: var(--gold-400);
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    .author-v2-credentials {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-bottom: 40px;
+    }
+
+    .author-v2-credential {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-v2-credential-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .author-v2-credential-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--gold-400);
+    }
+
+    .author-v2-credential-text {
+      text-align: left;
+    }
+
+    .author-v2-credential-num {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .author-v2-credential-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .author-v2-story {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .author-v2-quote {
+      background: linear-gradient(160deg, 
+        rgba(212, 175, 55, 0.08) 0%, 
+        rgba(212, 175, 55, 0.02) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 20px;
+      padding: 32px 40px;
+      position: relative;
+    }
+
+    .author-v2-quote::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      font-family: var(--serif);
+      font-size: 6rem;
+      color: var(--gold-500);
+      opacity: 0.3;
+      line-height: 1;
+    }
+
+    .author-v2-quote p {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-style: italic;
+      color: var(--gold-200);
+      margin: 0;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       PRICING — Классические карточки
+    ═══════════════════════════════════════════════════════ */
+    .pricing {
+      min-height: 100vh;
+      padding: clamp(60px, 10vw, 120px) clamp(24px, 6vw, 80px);
+      background: 
+        radial-gradient(ellipse 60% 50% at 50% 30%, rgba(212, 175, 55, 0.06), transparent 60%),
+        linear-gradient(180deg, #030303 0%, #080808 50%, #030303 100%);
+      position: relative;
+    }
+
+    .pricing-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .pricing-title {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-300) 25%,
+        var(--gold-100) 50%,
+        var(--gold-300) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 3s ease-in-out infinite;
+      margin-bottom: 16px;
+    }
+
+    .pricing-subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .pricing-card {
+      background: linear-gradient(165deg, 
+        rgba(20, 20, 20, 0.9) 0%, 
+        rgba(10, 10, 10, 0.95) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 28px;
+      padding: 48px 40px;
+      position: relative;
+      transition: all 0.5s var(--ease-out-expo);
+      text-align: center;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+    }
+
+    .pricing-card.premium {
+      border-color: rgba(212, 175, 55, 0.35);
+      background: linear-gradient(165deg, 
+        rgba(30, 25, 15, 0.95) 0%, 
+        rgba(15, 12, 8, 0.98) 100%);
+    }
+
+    .pricing-card.premium::before {
+      content: 'Рекомендуем';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 20px;
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+    }
+
+    .pricing-card-name {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .pricing-card-price {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 32px;
+      margin-bottom: 32px;
+      align-items: center;
+    }
+
+    .pricing-card-old-price {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+
+    .pricing-card-new-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .pricing-card-amount {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 500;
+      color: var(--gold-400);
+      line-height: 1;
+    }
+
+    .pricing-card-currency {
+      font-size: 1.2rem;
+      color: var(--gold-500);
+    }
+
+    .pricing-card-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .pricing-card-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: left;
+    }
+
+    .pricing-card-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-card-features li::before {
+      content: '✓';
+      color: var(--gold-400);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .pricing-card-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.4s var(--ease-out-expo);
+      border: none;
+    }
+
+    .pricing-btn-primary {
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      color: var(--bg);
+    }
+
+    .pricing-btn-primary:hover {
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    }
+
+    .pricing-btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--gold-400);
+    }
+
+    .pricing-btn-secondary:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .pricing-cards {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       MODULES PROGRAM — Tabs Slider
+    ═══════════════════════════════════════════════════════ */
+    .modules-program {
+      min-height: 100vh;
+      padding: 0 clamp(24px, 6vw, 80px) clamp(60px, 10vw, 120px);
+      background: 
+        radial-gradient(ellipse 60% 40% at 30% 20%, rgba(212, 175, 55, 0.06), transparent 50%),
+        radial-gradient(ellipse 50% 50% at 70% 80%, rgba(212, 175, 55, 0.04), transparent 50%),
+        linear-gradient(180deg, 
+          rgba(3, 3, 3, 0) 0%,
+          rgba(4, 4, 4, 0.3) 5%,
+          rgba(6, 6, 6, 0.7) 12%,
+          #080808 20%,
+          #080808 80%,
+          rgba(6, 6, 6, 0.7) 88%,
+          rgba(4, 4, 4, 0.3) 95%,
+          rgba(3, 3, 3, 0) 100%
+        );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modules-program::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(180deg, 
+          #030303 0%,
+          rgba(3, 3, 3, 0.95) 3%,
+          rgba(3, 3, 3, 0.7) 8%,
+          rgba(3, 3, 3, 0.3) 15%,
+          transparent 25%,
+          transparent 75%,
+          rgba(3, 3, 3, 0.3) 85%,
+          rgba(3, 3, 3, 0.7) 92%,
+          rgba(3, 3, 3, 0.95) 97%,
+          #030303 100%
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .modules-program-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modules-program-header {
+      text-align: center;
+      margin-bottom: clamp(30px, 5vw, 40px);
+    }
+
+    .modules-program-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-500);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .modules-program-title {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.2;
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-300) 25%,
+        var(--gold-100) 50%,
+        var(--gold-300) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 3s ease-in-out infinite;
+    }
+
+    .modules-program-tabs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 50px;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .modules-program-tabs-nav {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modules-program-tabs-nav.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .modules-program-tabs-nav:hover:not(.hidden) {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .modules-program-tabs-nav svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--muted);
+      transition: fill 0.3s ease;
+    }
+
+    .modules-program-tabs-nav:hover:not(.hidden) svg {
+      fill: var(--gold-400);
+    }
+
+    .modules-program-tab {
+      padding: 14px 28px;
+      background: transparent;
+      border: none;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.4s var(--ease-out-expo);
+      position: relative;
+    }
+
+    .modules-program-tab:hover {
+      color: var(--text);
+    }
+
+    .modules-program-tab.active {
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      color: var(--bg);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35);
+    }
+
+    .modules-program-content {
+      position: relative;
+      min-height: 400px;
+    }
+
+    .modules-program-panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px) scale(0.97);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.7s;
+      pointer-events: none;
+    }
+
+    .modules-program-panel.active {
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .modules-program-panel-inner {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: start;
+      background: linear-gradient(160deg, 
+        rgba(18, 18, 18, 0.9) 0%, 
+        rgba(10, 10, 10, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 32px;
+      padding: clamp(40px, 6vw, 60px);
+    }
+
+    .modules-program-panel-num {
+      font-family: var(--serif);
+      font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 400;
+      line-height: 1;
+      background: linear-gradient(180deg, var(--gold-400) 0%, rgba(212, 175, 55, 0.1) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 24px;
+    }
+
+    .modules-program-panel-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 500;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.3;
+    }
+
+    .modules-program-panel-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0 0 32px;
+      line-height: 1.8;
+    }
+
+    .modules-program-panel-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modules-program-panel-right {
+      width: 320px;
+      height: 400px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02));
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modules-program-panel-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modules-program-panel-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s ease;
+    }
+
+    .modules-program-panel-feature:hover {
+      background: rgba(212, 175, 55, 0.05);
+      border-color: rgba(212, 175, 55, 0.15);
+    }
+
+    .modules-program-panel-feature-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modules-program-panel-feature-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--gold-400);
+    }
+
+    .modules-program-panel-feature h4 {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-500);
+      margin: 0 0 8px;
+    }
+
+    .modules-program-panel-feature p {
+      font-size: 1rem;
+      color: var(--text);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .modules-program-tabs {
+        flex-wrap: wrap;
+        border-radius: 20px;
+      }
+
+      .modules-program-tab {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+      }
+
+      .modules-program-panel-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* ===== VIDEO PLAYER BLOCK ===== */
+    .video-section {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(180deg, 
+        rgba(3, 3, 3, 1) 0%,
+        rgba(10, 8, 5, 1) 50%,
+        rgba(3, 3, 3, 1) 100%
+      );
+      overflow: visible;
+    }
+
+    .video-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      padding: clamp(1.5rem, 5vw, 4rem);
+      overflow: visible;
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(
+        90deg,
+        var(--gold-600) 0%,
+        var(--gold-400) 25%,
+        var(--gold-300) 50%,
+        var(--gold-400) 75%,
+        var(--gold-600) 100%
+      );
+      background-size: 200% 100%;
+      animation: goldShimmer 3s linear infinite;
+      padding: 3px;
+      box-shadow: 
+        0 20px 60px -15px rgba(0, 0, 0, 0.6);
+      width: 60%;
+      max-width: 1000px;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    @keyframes goldShimmer {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .video-inner {
+      position: relative;
+      border-radius: 21px;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+
+    .video-player {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 23px;
+      transition: border-radius 0.4s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .video-player.active-video {
+      opacity: 1;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Video Fade Overlays */
+    .video-fade-top,
+    .video-fade-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 150px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .video-fade-top {
+      top: 0;
+      background: linear-gradient(180deg, 
+        rgba(3, 3, 3, 1) 0%,
+        rgba(3, 3, 3, 0.8) 30%,
+        rgba(3, 3, 3, 0) 100%
+      );
+    }
+
+    .video-fade-bottom {
+      bottom: 0;
+      background: linear-gradient(0deg, 
+        rgba(3, 3, 3, 1) 0%,
+        rgba(3, 3, 3, 0.8) 30%,
+        rgba(3, 3, 3, 0) 100%
+      );
+    }
+
+    /* Decorative corners */
+    .video-corner {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .video-corner::before,
+    .video-corner::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(90deg, var(--gold-400), transparent);
+    }
+
+    .video-corner.top-left {
+      top: -20px;
+      left: -20px;
+    }
+    .video-corner.top-left::before {
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 1px;
+    }
+    .video-corner.top-left::after {
+      top: 20px;
+      left: 20px;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--gold-400), transparent);
+    }
+
+    .video-corner.top-right {
+      top: -20px;
+      right: -20px;
+    }
+    .video-corner.top-right::before {
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(270deg, var(--gold-400), transparent);
+    }
+    .video-corner.top-right::after {
+      top: 20px;
+      right: 20px;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--gold-400), transparent);
+    }
+
+    .video-corner.bottom-left {
+      bottom: -20px;
+      left: -20px;
+    }
+    .video-corner.bottom-left::before {
+      bottom: 20px;
+      left: 20px;
+      width: 40px;
+      height: 1px;
+    }
+    .video-corner.bottom-left::after {
+      bottom: 20px;
+      left: 20px;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(0deg, var(--gold-400), transparent);
+    }
+
+    .video-corner.bottom-right {
+      bottom: -20px;
+      right: -20px;
+    }
+    .video-corner.bottom-right::before {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(270deg, var(--gold-400), transparent);
+    }
+    .video-corner.bottom-right::after {
+      bottom: 20px;
+      right: 20px;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(0deg, var(--gold-400), transparent);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       МОБИЛЬНАЯ АДАПТАЦИЯ — Комплексные стили
+    ═══════════════════════════════════════════════════════ */
+    
+    /* Tablet (768px) */
+    @media (max-width: 768px) {
+      /* Блок "Почему отдохнуть не помогает" */
+      .why-v2 {
+        padding: 48px 20px 60px;
+        min-height: auto;
+      }
+      
+      .why-v2-label {
+        font-size: 0.7rem;
+        margin-bottom: 16px;
+      }
+      
+      .why-v2-title {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+        margin-bottom: 32px;
+      }
+      
+      .why-v2-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      
+      .why-v2-card {
+        padding: 24px 20px;
+      }
+      
+      /* Блок "Программа для тебя" */
+      .for-you-v2 {
+        padding: 48px 20px;
+        min-height: auto;
+      }
+      
+      .for-you-v2-title {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+        margin-bottom: 32px;
+      }
+      
+      .for-you-v2-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      
+      .for-you-v2-card-photo {
+        aspect-ratio: 16/9;
+      }
+      
+      .for-you-v2-card-content {
+        padding: 20px;
+      }
+      
+      .for-you-v2-card-content p {
+        font-size: 0.95rem;
+      }
+      
+      /* Блок "Как работает метод" */
+      .how-v1 {
+        padding: 48px 20px;
+        min-height: auto;
+      }
+      
+      .how-v1-title {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+        margin-bottom: 32px;
+      }
+      
+      .how-v1-card {
+        padding: 28px 24px;
+      }
+      
+      .how-v1-card-num {
+        font-size: 4rem;
+        top: 8px;
+        right: 12px;
+      }
+      
+      /* Блок "Автор" */
+      .author-v2 {
+        padding: 48px 20px;
+        min-height: auto;
+      }
+      
+      .author-v2-title {
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
+      }
+      
+      .author-v2-photo-wrapper {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 32px;
+      }
+      
+      .author-v2-credentials {
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .author-v2-credential {
+        justify-content: center;
+      }
+      
+      .author-v2-story {
+        font-size: 1rem;
+      }
+      
+      .author-v2-quote {
+        padding: 24px 20px;
+      }
+      
+      /* Блок "Тарифы" */
+      .pricing {
+        padding: 48px 20px;
+        min-height: auto;
+      }
+      
+      .pricing-title {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+      }
+      
+      .pricing-card {
+        padding: 36px 24px;
+      }
+      
+      .pricing-card-amount {
+        font-size: 2.8rem;
+      }
+      
+      .pricing-card-old-price {
+        font-size: 1.5rem;
+      }
+      
+      /* Блок "Модули программы" */
+      .modules-program {
+        padding: 48px 20px;
+        min-height: auto;
+      }
+      
+      .modules-program-title {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+      }
+      
+      .modules-program-tabs {
+        gap: 8px;
+        padding: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .modules-program-tab {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        flex: 1 1 auto;
+        min-width: fit-content;
+      }
+      
+      .modules-program-tabs-nav {
+        display: none;
+      }
+      
+      .modules-program-panel-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 24px;
+      }
+      
+      .modules-program-panel-num {
+        font-size: 3rem;
+      }
+      
+      .modules-program-panel-title {
+        font-size: 1.4rem;
+      }
+      
+      .modules-program-panel-right {
+        height: 250px;
+      }
+      
+      /* Видео блок - вертикальный формат */
+      .video-section {
+        min-height: 120vh;
+        padding: 80px 0;
+        overflow: hidden;
+      }
+      
+      .video-container {
+        padding: 0 20px;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .video-wrapper {
+        border-radius: 20px;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+      
+      .video-inner {
+        border-radius: 18px;
+        aspect-ratio: 9/14;
+        overflow: hidden;
+      }
+      
+      .video-player {
+        aspect-ratio: auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 18px;
+      }
+      
+      .video-corner {
+        display: none;
+      }
+      
+      .video-fade-top,
+      .video-fade-bottom {
+        height: 60px;
+      }
+    }
+    
+    /* Mobile (480px) */
+    @media (max-width: 480px) {
+      /* Общие заголовки */
+      .why-v2-title,
+      .for-you-v2-title,
+      .how-v1-title,
+      .pricing-title,
+      .modules-program-title {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+      }
+      
+      /* Блок "Почему отдохнуть не помогает" */
+      .why-v2 {
+        padding: 40px 16px 48px;
+      }
+      
+      .why-v2-card {
+        padding: 20px 16px;
+      }
+      
+      .why-v2-card-title {
+        font-size: 1.1rem;
+      }
+      
+      .why-v2-card-text {
+        font-size: 0.9rem;
+      }
+      
+      /* Блок "Программа для тебя" */
+      .for-you-v2 {
+        padding: 40px 16px;
+      }
+      
+      .for-you-v2-card-content {
+        padding: 16px;
+      }
+      
+      .for-you-v2-card-content p {
+        font-size: 0.9rem;
+      }
+      
+      /* Блок "Как работает метод" */
+      .how-v1 {
+        padding: 40px 16px;
+      }
+      
+      .how-v1-card {
+        padding: 24px 20px;
+      }
+      
+      .how-v1-card-num {
+        font-size: 3.5rem;
+      }
+      
+      .how-v1-card-title {
+        font-size: 1.3rem;
+      }
+      
+      .how-v1-card-text {
+        font-size: 0.9rem;
+      }
+      
+      /* Блок "Автор" */
+      .author-v2 {
+        padding: 40px 16px;
+      }
+      
+      .author-v2-label {
+        font-size: 0.65rem;
+      }
+      
+      .author-v2-title {
+        font-size: clamp(1.6rem, 7vw, 2rem);
+      }
+      
+      .author-v2-photo-wrapper {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 24px;
+      }
+      
+      .author-v2-name {
+        font-size: 1.8rem;
+      }
+      
+      .author-v2-role {
+        font-size: 0.9rem;
+      }
+      
+      .author-v2-credential-num {
+        font-size: 1.6rem;
+      }
+      
+      .author-v2-story {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      
+      .author-v2-quote {
+        padding: 20px 16px;
+      }
+      
+      .author-v2-quote::before {
+        font-size: 4rem;
+        top: -5px;
+        left: 16px;
+      }
+      
+      .author-v2-quote p {
+        font-size: 1rem;
+      }
+      
+      /* Блок "Тарифы" */
+      .pricing {
+        padding: 40px 16px;
+      }
+      
+      .pricing-header {
+        margin-bottom: 40px;
+      }
+      
+      .pricing-subtitle {
+        font-size: 0.95rem;
+      }
+      
+      .pricing-card {
+        padding: 32px 20px;
+        border-radius: 20px;
+      }
+      
+      .pricing-card.premium::before {
+        font-size: 0.65rem;
+        padding: 5px 16px;
+      }
+      
+      .pricing-card-name {
+        font-size: 1.5rem;
+      }
+      
+      .pricing-card-desc {
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+      }
+      
+      .pricing-card-amount {
+        font-size: 2.4rem;
+      }
+      
+      .pricing-card-old-price {
+        font-size: 1.3rem;
+      }
+      
+      .pricing-card-features li {
+        padding: 10px 0;
+        font-size: 0.88rem;
+      }
+      
+      .pricing-btn {
+        padding: 14px 20px;
+        font-size: 0.9rem;
+      }
+      
+      /* Блок "Модули программы" */
+      .modules-program {
+        padding: 40px 16px;
+      }
+      
+      .modules-program-tabs {
+        padding: 6px;
+        gap: 6px;
+      }
+      
+      .modules-program-tab {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+      }
+      
+      .modules-program-panel-inner {
+        padding: 24px 16px;
+        gap: 24px;
+      }
+      
+      .modules-program-panel-num {
+        font-size: 2.5rem;
+      }
+      
+      .modules-program-panel-title {
+        font-size: 1.2rem;
+      }
+      
+      .modules-program-panel-desc {
+        font-size: 0.9rem;
+      }
+      
+      .modules-program-panel-feature h4 {
+        font-size: 0.65rem;
+      }
+      
+      .modules-program-panel-feature p {
+        font-size: 0.9rem;
+      }
+      
+      .modules-program-panel-right {
+        height: 200px;
+      }
+      
+      /* Видео блок - вертикальный формат */
+      .video-section {
+        min-height: 110vh;
+        padding: 70px 0;
+        overflow: hidden;
+      }
+      
+      .video-container {
+        padding: 0 16px;
+        height: 90vh;
+        overflow: hidden;
+      }
+      
+      .video-wrapper {
+        border-radius: 16px;
+        max-width: 240px;
+      }
+      
+      .video-inner {
+        border-radius: 14px;
+      }
+      
+      .video-player {
+        border-radius: 14px;
+      }
+      
+      .video-fade-top,
+      .video-fade-bottom {
+        height: 40px;
+      }
+      
+      /* Честный блок */
+      .honest-block-v2 {
+        padding: 40px 16px;
+      }
+      
+      .v2-quote-text {
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+      }
+      
+      .v2-quote-mark {
+        font-size: 4rem;
+      }
+      
+      .v2-emphasis {
+        gap: 10px;
+      }
+      
+      .v2-mini-quote {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+      }
+      
+      .v2-conclusion {
+        padding: 16px 20px;
+        font-size: 0.95rem;
+      }
+    }
+    
+    /* Extra Small (360px) */
+    @media (max-width: 360px) {
+      .hero-headline {
+        font-size: clamp(2.4rem, 10vw, 3rem);
+      }
+      
+      .btn-gold,
+      .btn-line {
+        padding: 14px 24px;
+        font-size: 0.85rem;
+      }
+      
+      .pricing-card-amount {
+        font-size: 2rem;
+      }
+      
+      .modules-program-tab {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-bottom-fade"></div>
+    
+    <div class="hero-spotlight">
+      <div class="spotlight-beam"></div>
+      <div class="spotlight-beam-2"></div>
+      <div class="spotlight-beam-3"></div>
+    </div>
+
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span>Новый поток · Февраль 2025</span>
+      </div>
+      <h1 class="hero-headline">
+        Танцевально двигательный<br>
+        <em>терапевт</em>
+      </h1>
+      
+      <div class="hero-photo-mobile-wrap">
+        <div class="hero-photo-mobile">
+          <img
+            src="./dancer-gold.jpg"
+            alt="Танцовщица в движении"
+            loading="eager"
+          />
+        </div>
+        
+        <div class="hero-float-card top-right">
+          <strong>15+</strong>
+          <span>экспертов-кураторов</span>
+        </div>
+        <div class="hero-float-card bottom-left">
+          <strong>Live</strong>
+          <span>демонстрации сессий</span>
+        </div>
+      </div>
+      
+      <p class="hero-sub">
+        Премиальная программа для практиков, которые хотят выстроить 
+        глубокую, этичную и устойчивую практику. 90 дней интенсива 
+        с живыми разборами, супервизиями и личным сопровождением.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-gold">Забронировать место</button>
+        <button class="btn btn-line">Смотреть программу</button>
+      </div>
+
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <img
+            class="hero-photo"
+            src="./dancer-gold.jpg"
+            alt="Танцовщица в движении"
+            loading="eager"
+            decoding="async"
+            onload="this.parentElement.classList.add('photo-loaded')"
+            onerror="this.style.display='none'"
+          />
+          <div class="hero-photo-overlay"></div>
+          <div class="hero-photo-fallback">TT</div>
+          <div class="hero-frame-inner">
+            <div class="hero-frame-text">Телесный Терапевт</div>
+          </div>
+        </div>
+        <div class="hero-float-card top-right">
+          <strong>15+</strong>
+          <span>экспертов-кураторов</span>
+        </div>
+        <div class="hero-float-card bottom-left">
+          <strong>Live</strong>
+          <span>демонстрации сессий</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ВАРИАНТ 2 — Центрированный драматичный
+  ═══════════════════════════════════════════════════════ -->
+  <section class="honest-block-v2">
+    <div class="v2-spotlight"></div>
+    <div class="v2-bottom-fade"></div>
+    
+    <div class="v2-content">
+      <h2 class="v2-headline">
+        <span class="v2-headline-accent">Вы не просто «устали».</span>
+      </h2>
+      
+      <div class="v2-divider"></div>
+      
+      <div class="v2-quote-wrapper">
+        <span class="v2-quote-mark left">«</span>
+        <span class="v2-quote-mark right">»</span>
+        
+        <div class="v2-quote-text">
+          <p>Со стороны ваша жизнь выглядит отлично. Семья, работа, задачи. Вы держите лицо.<br>
+          Но я знаю цену, которую вы платите за этот фасад.</p>
+          
+          <div class="v2-emphasis">
+            <blockquote class="v2-mini-quote">Вы платите сжатой челюстью за каждое проглоченное "Нет".</blockquote>
+            <blockquote class="v2-mini-quote">Вы платите каменными плечами за гиперответственность.</blockquote>
+            <blockquote class="v2-mini-quote">Вы платите отсутствием либидо и радости за попытку быть "удобной".</blockquote>
+          </div>
+          
+          <p>Ваше тело превратилось в склад невысказанных эмоций. И 90% вашей энергии уходит не на жизнь, а на охрану этого склада. Чтобы, не дай бог, не рвануло.</p>
+          
+          <div class="v2-conclusion">
+            <p>Вы не сломались. Вы просто обесточены.</p>
+            <p>Я здесь, чтобы показать вам, как закрыть эти утечки энергии. Физически. Навсегда.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="v2-author">
+        <div class="v2-author-line"></div>
+        <span class="v2-author-name">Таня, телесный терапевт</span>
+        <div class="v2-author-line"></div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       БЛОК 4 — Почему просто отдохнуть не помогает
+  ═══════════════════════════════════════════════════════ -->
+  <section class="why-v2">
+    <div class="why-v2-container">
+      <h2 class="why-v2-title">Почему <em>"просто отдохнуть"</em> не помогает?</h2>
+      <p class="why-v2-answer">Потому что ваше напряжение живет не в графике, а в мышцах.</p>
+
+      <div class="why-v2-cards">
+        <div class="why-v2-card">
+          <div class="why-v2-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+            </svg>
+          </div>
+          <p><strong>Танцевально-двигательная терапия (ТДТ)</strong> — это самый быстрый доступ к психике.</p>
+        </div>
+        <div class="why-v2-card">
+          <div class="why-v2-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+              <circle cx="12" cy="8" r="1.5"/>
+              <circle cx="8" cy="12" r="1"/>
+              <circle cx="16" cy="12" r="1"/>
+            </svg>
+          </div>
+          <p>Тело реагирует на 0.5 секунды быстрее мозга. Пока голова думает "всё нормально", тело уже сжалось.</p>
+        </div>
+        <div class="why-v2-card full-width">
+          <div class="why-v2-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <p>Мы не будем годами копаться в детстве. Мы пойдем через тело.<br>Расслабляем мышцу — уходит тревога. Меняем позу — меняется состояние.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       БЛОК 5 — Как мы будем действовать
+  ═══════════════════════════════════════════════════════ -->
+  <section class="how-v1">
+    <header class="how-v1-header">
+      <h2 class="how-v1-title">Как мы будем <em>действовать?</em></h2>
+    </header>
+    
+    <div class="how-v1-grid">
+      <article class="how-v1-card">
+        <span class="how-v1-card-num">01</span>
+        <div class="how-v1-card-content">
+          <div class="how-v1-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+          </div>
+          <h3 class="how-v1-card-title">Диагностика</h3>
+          <p class="how-v1-card-text">Находим, где именно вы теряете энергию — <em>челюсть, таз, диафрагма</em>.</p>
+        </div>
+      </article>
+      
+      <article class="how-v1-card">
+        <span class="how-v1-card-num">02</span>
+        <div class="how-v1-card-content">
+          <div class="how-v1-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.66 8L12 2.35 6.34 8C4.78 9.56 4 11.64 4 13.64s.78 4.11 2.34 5.67 3.61 2.35 5.66 2.35 4.1-.79 5.66-2.35S20 15.64 20 13.64 19.22 9.56 17.66 8zM6 14c.01-2 .62-3.27 1.76-4.4L12 5.27l4.24 4.38C17.38 10.77 17.99 12 18 14H6z"/></svg>
+          </div>
+          <h3 class="how-v1-card-title">Разрядка</h3>
+          <p class="how-v1-card-text">Безопасно выпускаем накопленный "заряд" — <em>гнев, обиду, страх</em>.</p>
+        </div>
+      </article>
+      
+      <article class="how-v1-card">
+        <span class="how-v1-card-num">03</span>
+        <div class="how-v1-card-content">
+          <div class="how-v1-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
+          </div>
+          <h3 class="how-v1-card-title">Перепрошивка</h3>
+          <p class="how-v1-card-text">Учим тело новым реакциям: <em>расслабление вместо напряжения</em>.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       БЛОК 6 — Видео
+  ═══════════════════════════════════════════════════════ -->
+  <section class="video-section">
+    <div class="video-fade-top"></div>
+    <div class="video-container">
+      <div class="video-wrapper">
+        <div class="video-corner top-left"></div>
+        <div class="video-corner top-right"></div>
+        <div class="video-corner bottom-left"></div>
+        <div class="video-corner bottom-right"></div>
+        
+        <div class="video-inner">
+          <video class="video-player active-video" id="heroVideo" muted playsinline>
+            <source src="Video_Generation_From_Stone_to_Life.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <video class="video-player" id="secondVideo" muted playsinline>
+            <source src="второе видео.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+        </div>
+      </div>
+      
+    </div>
+    <div class="video-fade-bottom"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       БЛОК — Программа для тебя, если...
+  ═══════════════════════════════════════════════════════ -->
+  <section class="for-you-v2">
+    <div class="for-you-v2-container">
+      <h2 class="for-you-v2-title">Программа для тебя, если...</h2>
+      <div class="for-you-v2-cards">
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/Gemini_Generated_Image_3c5i8x3c5i8x3c5i.png" alt="Усталость">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Просыпаюсь разбитой, даже если спала 8 часов.</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/Gemini_Generated_Image_5tpta65tpta65tpt.png" alt="Тревога">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Раздражаюсь на близких из-за мелочей.</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/Gemini_Generated_Image_yvdbz0yvdbz0yvdb.png" alt="Раздражение">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Чувствую фоновую тревогу, которая живет в животе.</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/плечи.png" alt="Напряжение в плечах">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Не можешь расслабить плечи и шею, они как каменные даже в отпуске.</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/день сурка.png" alt="День сурка">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Живешь с ощущением «дня сурка»: всё по кругу, а радости нет.</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/лень.png" alt="Режим овоща">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Вечером есть силы только лежать и листать ленту (режим "овоща").</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/сдерживаю слезы.png" alt="Сдерживаю эмоции">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Часто сдерживаешь слезы или желание закричать, чтобы быть «адекватной».</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/заморожены.png" alt="Замороженные чувства">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Кажется, что чувства «заморожены»: головой понимаешь, что надо радоваться, а тело ничего не чувствует.</p>
+          </div>
+        </div>
+        <div class="for-you-v2-card">
+          <div class="for-you-v2-card-photo">
+            <img src="Для кого/овош.png" alt="Нет ресурса">
+          </div>
+          <div class="for-you-v2-card-content">
+            <p>Постоянно ругаешь себя за лень, хотя на самом деле просто нет ресурса, чтобы встать и сделать.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MODULES PROGRAM — Tabs Slider
+  ═══════════════════════════════════════════════════════ -->
+  <section class="modules-program">
+    <div class="modules-program-container">
+      <header class="modules-program-header">
+        <h2 class="modules-program-title">Путь трансформации</h2>
+      </header>
+
+      <div class="modules-program-tabs">
+        <button class="modules-program-tabs-nav hidden" id="prevModuleBtn" onclick="prevModule()">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="modules-program-tab active" onclick="showModule(0)">Модуль 1</button>
+        <button class="modules-program-tab" onclick="showModule(1)">Модуль 2</button>
+        <button class="modules-program-tab" onclick="showModule(2)">Модуль 3</button>
+        <button class="modules-program-tab" onclick="showModule(3)">Модуль 4</button>
+        <button class="modules-program-tabs-nav" id="nextModuleBtn" onclick="nextModule()">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+
+      <div class="modules-program-content">
+        <div class="modules-program-panel active" data-panel="0">
+          <div class="modules-program-panel-inner">
+            <div class="modules-program-panel-left">
+              <div class="modules-program-panel-num">01</div>
+              <h3 class="modules-program-panel-title">Точка А. "Черные дыры" энергии</h3>
+              <p class="modules-program-panel-desc">Находим, куда сливается ваша энергия. Диагностируем утечки, которые вы не замечаете годами — и почему отдых не помогает восстановиться.</p>
+              <div class="modules-program-panel-feature">
+                <div class="modules-program-panel-feature-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <div>
+                  <h4>Результат</h4>
+                  <p>Вы понимаете причину своей усталости</p>
+                </div>
+              </div>
+            </div>
+            <div class="modules-program-panel-right">
+              <!-- Место для фото -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modules-program-panel" data-panel="1">
+          <div class="modules-program-panel-inner">
+            <div class="modules-program-panel-left">
+              <div class="modules-program-panel-num">02</div>
+              <h3 class="modules-program-panel-title">Карта тела. Типология характеров</h3>
+              <p class="modules-program-panel-desc">Почему вы реагируете именно так? Понимание своей структуры характера снимает бесконечную самокритику и открывает путь к изменениям.</p>
+              <div class="modules-program-panel-feature">
+                <div class="modules-program-panel-feature-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <div>
+                  <h4>Результат</h4>
+                  <p>Вы перестаете винить себя за свои реакции</p>
+                </div>
+              </div>
+            </div>
+            <div class="modules-program-panel-right">
+              <!-- Место для фото -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modules-program-panel" data-panel="2">
+          <div class="modules-program-panel-inner">
+            <div class="modules-program-panel-left">
+              <div class="modules-program-panel-num">03</div>
+              <h3 class="modules-program-panel-title">Эмоциональный Детокс</h3>
+              <p class="modules-program-panel-desc">Как прожить гнев и боль, не разрушая семью. Безопасные техники разрядки накопленных эмоций без срывов на близких.</p>
+              <div class="modules-program-panel-feature">
+                <div class="modules-program-panel-feature-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <div>
+                  <h4>Результат</h4>
+                  <p>Уходит "ком в горле" и тяжесть на душе</p>
+                </div>
+              </div>
+            </div>
+            <div class="modules-program-panel-right">
+              <!-- Место для фото -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modules-program-panel" data-panel="3">
+          <div class="modules-program-panel-inner">
+            <div class="modules-program-panel-left">
+              <div class="modules-program-panel-num">04</div>
+              <h3 class="modules-program-panel-title">Детектор Лжи. Язык тела</h3>
+              <p class="modules-program-panel-desc">Как читать истинные намерения людей. Видеть то, что скрывают слова — в переговорах, отношениях, бизнесе.</p>
+              <div class="modules-program-panel-feature">
+                <div class="modules-program-panel-feature-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <div>
+                  <h4>Результат</h4>
+                  <p>Вами больше невозможно манипулировать</p>
+                </div>
+              </div>
+            </div>
+            <div class="modules-program-panel-right">
+              <!-- Место для фото -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       AUTHOR BLOCK — Variant 2
+  ═══════════════════════════════════════════════════════ -->
+  <section class="author-v2">
+    <div class="author-v2-container">
+      <span class="author-v2-label">Кто отвечает за ваш результат</span>
+      <h2 class="author-v2-title">Ваш проводник на пути трансформации</h2>
+      
+      <div class="author-v2-photo-wrapper">
+        <div class="author-v2-photo">
+          <div class="author-photo-placeholder">Фото</div>
+          <!-- <img src="tanya-photo.jpg" alt="Таня"> -->
+        </div>
+      </div>
+      
+      <h3 class="author-v2-name">Таня</h3>
+      <p class="author-v2-role">Основатель Института ТДТ</p>
+      
+      <div class="author-v2-credentials">
+        <div class="author-v2-credential">
+          <div class="author-v2-credential-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+          </div>
+          <div class="author-v2-credential-text">
+            <div class="author-v2-credential-num">15 лет</div>
+            <div class="author-v2-credential-label">клинической практики</div>
+          </div>
+        </div>
+        
+        <div class="author-v2-credential">
+          <div class="author-v2-credential-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <div class="author-v2-credential-text">
+            <div class="author-v2-credential-num">2000+</div>
+            <div class="author-v2-credential-label">клиентов</div>
+          </div>
+        </div>
+      </div>
+      
+      <p class="author-v2-story">
+        Сама прошла путь от тяжелого аутоиммунного диагноза до полного восстановления через работу с телом. Знает изнутри, что значит чувствовать себя в ловушке собственного тела — и как из неё выбраться.
+      </p>
+      
+      <div class="author-v2-quote">
+        <p>«Я не теоретик. Я практик, который знает, как вытащить человека из ямы бессилия»</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PRICING BLOCK
+  ═══════════════════════════════════════════════════════ -->
+  <section class="pricing">
+    <div class="pricing-container">
+      <header class="pricing-header">
+        <h2 class="pricing-title">Выберите свой путь</h2>
+        <p class="pricing-subtitle">Два формата участия — выберите подходящий именно вам</p>
+      </header>
+
+      <div class="pricing-cards">
+        <!-- Стандарт -->
+        <div class="pricing-card">
+          <h3 class="pricing-card-name">Стандарт</h3>
+          <p class="pricing-card-desc">Самостоятельное прохождение программы с доступом ко всем материалам и групповой поддержкой.</p>
+
+          <ul class="pricing-card-features">
+            <li>Доступ ко всем 4 модулям</li>
+            <li>Видеоуроки и практические задания</li>
+            <li>Закрытый чат участников</li>
+            <li>Доступ к материалам 6 месяцев</li>
+          </ul>
+
+          <div class="pricing-card-price">
+            <span class="pricing-card-old-price">50 000 ₽</span>
+            <div class="pricing-card-new-price">
+              <span class="pricing-card-amount">26 990</span>
+              <span class="pricing-card-currency">₽</span>
+            </div>
+          </div>
+
+          <div class="pricing-card-buttons">
+            <button class="pricing-btn pricing-btn-primary">Оплатить полностью</button>
+            <button class="pricing-btn pricing-btn-secondary">Внести предоплату</button>
+          </div>
+        </div>
+
+        <!-- Премиум -->
+        <div class="pricing-card premium">
+          <h3 class="pricing-card-name">Премиум</h3>
+          <p class="pricing-card-desc">Глубокое погружение с личным сопровождением, разборами и индивидуальными сессиями.</p>
+
+          <ul class="pricing-card-features">
+            <li>Всё из тарифа «Стандарт»</li>
+            <li>4 личные сессии с Таней</li>
+            <li>Разбор ваших кейсов на групповых созвонах</li>
+            <li>Приоритетная обратная связь 24/7</li>
+            <li>Бессрочный доступ к материалам</li>
+          </ul>
+
+          <div class="pricing-card-price">
+            <span class="pricing-card-old-price">80 000 ₽</span>
+            <div class="pricing-card-new-price">
+              <span class="pricing-card-amount">39 990</span>
+              <span class="pricing-card-currency">₽</span>
+            </div>
+          </div>
+
+          <div class="pricing-card-buttons">
+            <button class="pricing-btn pricing-btn-primary">Оплатить полностью</button>
+            <button class="pricing-btn pricing-btn-secondary">Внести предоплату</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Video Auto-play on Scroll
+    const video = document.getElementById('heroVideo');
+    const secondVideo = document.getElementById('secondVideo');
+    const videoSection = document.querySelector('.video-section');
+    const videoWrapper = document.querySelector('.video-wrapper');
+    let currentActiveVideo = video;
+    
+    let lastScrollY = window.scrollY;
+    let currentScale = 1;
+    const minScale = 1;
+    const maxScale = 1.5;
+    
+    // Scroll-driven zoom animation
+    function handleVideoZoom() {
+      const sectionRect = videoSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const currentScrollY = window.scrollY;
+      
+      // Определяем направление скролла
+      const scrollingDown = currentScrollY > lastScrollY;
+      lastScrollY = currentScrollY;
+      
+      // Проверяем видимость секции
+      const sectionTop = sectionRect.top;
+      const sectionBottom = sectionRect.bottom;
+      const isVisible = sectionTop < viewportHeight && sectionBottom > 0;
+      
+      if (!isVisible) {
+        // Если секция не видна - сбрасываем scale
+        currentScale = minScale;
+        videoWrapper.style.transform = `scale(${currentScale})`;
+        return;
+      }
+      
+      // Вычисляем на сколько секция вошла в экран (0 = только появилась снизу, 1 = полностью прошла)
+      const enterProgress = Math.max(0, Math.min(1, (viewportHeight - sectionTop) / viewportHeight));
+      
+      if (scrollingDown) {
+        // Скролл вниз - только увеличиваем
+        const targetScale = minScale + (maxScale - minScale) * easeInOutSine(enterProgress);
+        if (targetScale > currentScale) {
+          currentScale = targetScale;
+        }
+      } else {
+        // Скролл вверх - уменьшаем
+        const targetScale = minScale + (maxScale - minScale) * easeInOutSine(enterProgress);
+        if (targetScale < currentScale) {
+          currentScale = targetScale;
+        }
+      }
+      
+      // Ограничиваем значения
+      currentScale = Math.max(minScale, Math.min(maxScale, currentScale));
+      
+      videoWrapper.style.transform = `scale(${currentScale})`;
+    }
+    
+    // Easing function
+    function easeInOutSine(t) {
+      return -(Math.cos(Math.PI * t) - 1) / 2;
+    }
+    
+    // Throttle для производительности
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleVideoZoom();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    
+    // Начальное состояние
+    handleVideoZoom();
+    
+    // Функция плавного переключения видео
+    function switchToVideo(fromVideo, toVideo) {
+      return new Promise((resolve) => {
+        // Подготавливаем второе видео
+        toVideo.currentTime = 0;
+        toVideo.style.opacity = '0';
+        toVideo.style.zIndex = '2';
+        
+        // Начинаем воспроизведение второго видео
+        toVideo.play().then(() => {
+          // Плавное появление второго видео
+          toVideo.style.transition = 'opacity 0.8s ease-in-out';
+          toVideo.style.opacity = '1';
+          
+          // Плавное исчезновение первого видео
+          fromVideo.style.transition = 'opacity 0.8s ease-in-out';
+          fromVideo.style.opacity = '0';
+          
+          setTimeout(() => {
+            fromVideo.pause();
+            fromVideo.currentTime = 0;
+            fromVideo.style.zIndex = '1';
+            fromVideo.classList.remove('active-video');
+            toVideo.classList.add('active-video');
+            currentActiveVideo = toVideo;
+            resolve();
+          }, 800);
+        });
+      });
+    }
+    
+    // Автовоспроизведение при видимости
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          currentActiveVideo.play();
+        } else {
+          video.pause();
+          secondVideo.pause();
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+    
+    observer.observe(videoSection);
+    
+    // Переключение между видео после окончания
+    video.addEventListener('ended', function() {
+      switchToVideo(video, secondVideo);
+    });
+    
+    secondVideo.addEventListener('ended', function() {
+      switchToVideo(secondVideo, video);
+    });
+
+    // ═══════════════════════════════════════════════════════
+    // Modules Program Tabs Navigation
+    // ═══════════════════════════════════════════════════════
+    let currentModule = 0;
+
+    function updateModuleNavigation() {
+      const prevBtn = document.getElementById('prevModuleBtn');
+      const nextBtn = document.getElementById('nextModuleBtn');
+      
+      // Скрываем стрелку назад на первом модуле
+      if (currentModule === 0) {
+        prevBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+      }
+      
+      // Скрываем стрелку вперед на последнем модуле
+      if (currentModule === 3) {
+        nextBtn.classList.add('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+      }
+    }
+
+    function showModule(index) {
+      currentModule = index;
+      
+      document.querySelectorAll('.modules-program-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+      
+      document.querySelectorAll('.modules-program-panel').forEach((panel, i) => {
+        panel.classList.toggle('active', i === index);
+      });
+      
+      updateModuleNavigation();
+    }
+
+    function prevModule() {
+      if (currentModule > 0) {
+        showModule(currentModule - 1);
+      }
+    }
+
+    function nextModule() {
+      if (currentModule < 3) {
+        showModule(currentModule + 1);
+      }
+    }
+  </script>
+
+</body>
+</html>
